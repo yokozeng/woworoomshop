@@ -5,48 +5,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Boostrap Index</title>
+    <title>Woworoom'後台</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.18/c3.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="./assets/style/all.css">
   </head>
 
   <body>
- 
+    <nav class="navbar navbar-expand-lg navbar-light pt-2" style="background-color: #fff;">
+      <div class="container-fluid wrap">
+        <!-- logo -->
+        <a class="navbar-brand color-primary" href="#">
+          <img src="https://i.imgur.com/Bk13Dl0.png" alt="" width="32" height="32" class="d-inline-block align-bottom me-1">
+          Woworoom's 後台</a>
+        <!-- menu -->
+        <div class="" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center ">
+            <li class="nav-item">
+              <a href="https://yokozeng.github.io/Woworoom/" class="nav-link">回前台</a>
+            </li>
+          </ul>
+        </div>
+    
+      </div>
+    </nav>
     
 <div class="container">
- 
-</div>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
+  <!-- header -->
 
-<p class="index__h1">test</p>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
+<!-- 圓餅圖 -->
+<div class="pt80 pb80">
+  <div class="wrap">
+    <h3 class="section-title text-center mb-5">全產品類別營收比重</h3>
+    <div id="chart"></div>
   </div>
 </div>
 
+<!-- 訂單列表 -->
+<div class="orderList pb80">
+  <div class="wrap">
+    <div class="orderTableWrap">
+      <table class="table table-hover">
+        <thead class="thead table-light">
+          <tr>
+            <th>訂單編號</th>
+            <th>聯絡人</th>
+            <th>聯絡地址</th>
+            <th>電子郵件</th>
+            <th>訂單品項</th>
+            <th>訂單日期</th>
+            <th>訂單狀態</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody class="tbodyList" style="background-color: #fff;">
+          <tr>
+            <td>${item.id}</td>
+            <td>
+              <p>${item.user.name}</p>
+              <p>${item.user.tel}</p>
+            </td>
+            <td>${item.user.address}</td>
+            <td>${item.user.email}</td>
+            <td>
+              <p>Louvre 雙人床架</p>
+            </td>
+            <td>2021/03/08</td>
+            <td class="orderStatus">
+              <a class="orderStatusBtn" href="#">${item.paid}</a>
+            </td>
+            <td>
+              <a href="#" class="delSingleOrderBtn">刪除</a>
+            </td>
+          </tr>
+          <tr>
+            <td>${item.id}</td>
+            <td>
+              <p>${item.user.name}</p>
+              <p>${item.user.tel}</p>
+            </td>
+            <td>${item.user.address}</td>
+            <td>${item.user.email}</td>
+            <td>
+              <p>${productsStr}</p>
+            </td>
+            <td>${date}</td>
+            <td class="orderStatus">
+              <input type="button" class="orderStatusBtn" data-id="${item.id}" data-status="${item.paid}" value="${orderStatusText}">
+<!--               <a class="orderStatusBtn" data-id="${item.id}" data-status="${item.paid}" href="#">${orderStatusText}</a> -->
+            </td>
+            <td>
+              <input type="button" class="delSingleOrderBtn" data-id="${item.id}" value="刪除">
+            </td>
+          </tr>
+          <tr>
+            <td>${item.id}</td>
+            <td>
+              <p>${item.user.name}</p>
+              <p>${item.user.tel}</p>
+            </td>
+            <td>${item.user.address}</td>
+            <td>${item.user.email}</td>
+            <td>
+              <p>Louvre 雙人床架</p>
+            </td>
+            <td>2021/03/08</td>
+            <td class="orderStatus">
+              <a href="#">${item.paid}</a>
+            </td>
+            <td>
+              <input type="button" class="delSingleOrderBtn" value="刪除">
+            </td>
+          </tr>
+        </tbody>
+        
+      </table>
+    </div>
 
-    <footer class="footer">
-      footer
-    </footer>
+  </div>
+</div>
+ 
+</div>
+
+  
 
     <script src="./assets/js/vendors.js"></script>
     <script src="./assets/js/all.js"></script>
